@@ -13,3 +13,4 @@ A second lambda will be reading from that queue and once any message arrives wit
 #### Bibliography: 
 
 https://www.middlewareinventory.com/blog/aws-lambda-terraform/
+https://dev.to/aws-builders/how-to-schedule-the-execution-of-your-lambda-code-2fl3#:~:text=The%20execution%20of%20a%20Lambda,a%20source%20to%20a%20destination.
