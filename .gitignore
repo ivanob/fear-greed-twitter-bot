@@ -1,1 +1,4 @@
 infra/.terraform/
+*.zip
+node_modules/
+dist/

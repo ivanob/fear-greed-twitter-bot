@@ -24,8 +24,8 @@ resource "aws_lambda_function" "lambda_scraper" {
 # This data block packs the lambda source code into a zip
 data "archive_file" "zip" {
   type        = "zip"
-  source_file = "../src/lambda-scraper.js"
-  output_path = "../src/lambda-scraper.zip"
+  source_file = "../src/lambda-scraper/dist/lambda-scraper.js"
+  output_path = "../src/lambda-scraper/dist/lambda-scraper.zip"
 }
 
 data "aws_iam_policy_document" "policy" {
