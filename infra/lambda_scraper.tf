@@ -12,9 +12,9 @@ resource "aws_iam_role" "iam_for_lambda" {
 # This block is the definiton of the lambda itself
 resource "aws_lambda_function" "lambda_scraper" {
   filename         = data.archive_file.zip.output_path
-  function_name    = "lambda-scraper"
+  function_name    = "handler"
   handler          = "lambda-scraper.handler"
-  runtime          = "nodejs14.x"
+  runtime          = "nodejs16.x"
   role             = aws_iam_role.iam_for_lambda.arn
   memory_size      = 128
   timeout          = 5

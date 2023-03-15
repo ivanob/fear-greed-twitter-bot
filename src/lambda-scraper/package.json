@@ -2,13 +2,18 @@
   "name": "lambda-scraper",
   "version": "1.0.0",
   "scripts": {
-    "build": "tsc"
+    "prebuild": "rm -rf dist",
+    "build": "esbuild lambda-scraper.ts --bundle --platform=node --target=es2020 --outfile=dist/lambda-scraper.js"
+    //"postbuild": "cd dist && zip -r lambda-scraper.zip *.js*"
   },
   "dependencies": {
-    "aws-lambda": "^1.0.7"
+    "aws-lambda": "^1.0.7",
+    "esbuild": "^0.17.11"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.111",
-    "@types/node": "^18.15.0"
+    "@types/node": "^18.15.0",
+    "@types/uuid": "^9.0.1",
+    "ts-loader": "^9.4.2"
   }
 }

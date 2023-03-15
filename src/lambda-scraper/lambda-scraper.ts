@@ -5,7 +5,7 @@ import AWS from "aws-sdk";
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-const handler = async (event: APIGatewayEvent) => {
+export const handler = async (event: APIGatewayEvent) => {
   const reading: FAndG = scrapeFearAndGreedIndex();
   try {
     await storeReadingInDB(reading);
@@ -32,5 +32,3 @@ const storeReadingInDB = async (reading: FAndG) => {
   };
   return dynamodb.put(params).promise();
 };
-
-export default handler;
