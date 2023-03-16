@@ -7,6 +7,30 @@ resource "aws_iam_role" "iam_for_lambda" {
     name   = "policy-dynamodb-writer"
     policy = data.aws_iam_policy_document.inline_policy.json
   }
+  inline_policy {
+    name   = "policy-sqs-writer"
+    policy = data.aws_iam_policy_document.inline_policy2.json
+  }
+}
+
+data "aws_iam_policy_document" "inline_policy2" {
+  statement {
+    actions = [
+      "sqs:SendMessage"
+    ]
+
+    resources = [aws_sqs_queue.publish_fandg_reading.arn]
+
+    effect = "Allow"
+  }
+}
+
+resource "aws_lambda_permission" "sqs_permission" {
+  statement_id  = "AllowExecutionFromSQS"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda_scraper.arn
+  principal     = "sqs.amazonaws.com"
+  source_arn    = aws_sqs_queue.publish_fandg_reading.arn
 }
 
 # This block is the definiton of the lambda itself

@@ -2,13 +2,15 @@ import { APIGatewayEvent } from "aws-lambda";
 import scrapeFearAndGreedIndex, { FAndG } from "./scraper";
 import { v4 as uuidv4 } from "uuid";
 import AWS from "aws-sdk";
+import { sendMessage } from "./send-sqs";
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 export const handler = async (event: APIGatewayEvent) => {
   const reading: FAndG = scrapeFearAndGreedIndex();
   try {
-    await storeReadingInDB(reading);
+    // await storeReadingInDB(reading);
+    await sendMessage('AAAA')
   } catch {
     return {
       statusCode: 400,

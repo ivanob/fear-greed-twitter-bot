@@ -22,6 +22,7 @@ way of bundling would be the following, but code is less readable and for debugg
 
 #### Bibliography: 
 
+- https://registry.terraform.io/providers/hashicorp/aws/latest/docs // Official documentation of AWS provider in terraform
 - https://www.middlewareinventory.com/blog/aws-lambda-terraform/
 - https://dev.to/aws-builders/how-to-schedule-the-execution-of-your-lambda-code-2fl3#:~:text=The%20execution%20of%20a%20Lambda,a%20source%20to%20a%20destination.
 - https://docs.aws.amazon.com/lambda/latest/dg/typescript-package.html#aws-cdk-ts
