@@ -7,10 +7,12 @@ import { sendMessage } from "./send-sqs";
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 export const handler = async (event: APIGatewayEvent) => {
-  const reading: FAndG = scrapeFearAndGreedIndex();
   try {
+    const reading: FAndG | undefined = await scrapeFearAndGreedIndex();
+    if(reading){
+      await sendMessage(reading)
+    }
     // await storeReadingInDB(reading);
-    await sendMessage('AAAA')
   } catch {
     return {
       statusCode: 400,
