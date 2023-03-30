@@ -1,13 +1,9 @@
 import axios from "axios";
+import {FAndG} from "@fear-greed-bot/common"
 
 const CNN_Url =
   "https://production.dataviz.cnn.io/index/fearandgreed/graphdata";
 
-export interface FAndG {
-  score: number;
-  rating: string;
-  timestamp: number;
-}
 
 const scrapeFearAndGreedIndex = async (): Promise<FAndG|undefined> => {
   try {

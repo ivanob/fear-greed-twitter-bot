@@ -4,6 +4,7 @@
 - [X] Typescript must be set in the most strict level in `.tsconfig`
 - [X] Compile TS project and bundle it to deploy as JS lambda [1]
 - [X] Find a good graphical diagram tool
+- [X] monorepo management tool: lerna
 
 ### Description
 The idea is to tweet periodically some information about the Fear&Greed index [1]. To do this a lambda will check every X hours the external resource, scrap the status about this index and send it to a SQS queue and also store it into a DynamoDB table.
@@ -19,7 +20,11 @@ want to use SLS or AWS SAM for this cause I want to do it all from terraform. Al
 way of bundling would be the following, but code is less readable and for debugging purposes I wanted to keep it easy.
 ```"build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",```
 
+### Lerna management orders
 
+>> npx nx graph // To visualize the project structure
+>> npx lerna run build // To build the whole project from root
+>> npx lerna run test // To test the project (each package)
 #### Bibliography: 
 
 - https://registry.terraform.io/providers/hashicorp/aws/latest/docs // Official documentation of AWS provider in terraform
@@ -27,3 +32,4 @@ way of bundling would be the following, but code is less readable and for debugg
 - https://dev.to/aws-builders/how-to-schedule-the-execution-of-your-lambda-code-2fl3#:~:text=The%20execution%20of%20a%20Lambda,a%20source%20to%20a%20destination.
 - https://docs.aws.amazon.com/lambda/latest/dg/typescript-package.html#aws-cdk-ts
 - https://esbuild.github.io/
+- https://lerna.js.org/docs/getting-started

@@ -1,8 +1,9 @@
 import { APIGatewayEvent } from "aws-lambda";
-import scrapeFearAndGreedIndex, { FAndG } from "./scraper";
+import scrapeFearAndGreedIndex from "./scraper";
 import { v4 as uuidv4 } from "uuid";
 import AWS from "aws-sdk";
 import { sendMessage } from "./send-sqs";
+import { FAndG } from "@fear-greed-bot/common";
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 

@@ -1,0 +1,12 @@
+{
+  "name": "@fear-greed-bot/common",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/types.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,5 +1,5 @@
+import { FAndG } from "@fear-greed-bot/common";
 import { SQS } from "aws-sdk";
-import { FAndG } from "./scraper";
 
 const sqs = new SQS();
 
