@@ -1,0 +1,23 @@
+{
+  "name": "fear-greed-twitter-bot",
+  "version": "1.0.0",
+  "description": "- [X] Terraform: create a couple of lambdas and a SQS queue in between them, also a DynamoDB table to store some data. - [X] Twitter API: basic usage of the API - [X] Typescript must be set in the most strict level in `.tsconfig` - [X] Compile TS project and bundle it to deploy as JS lambda [1] - [X] Find a good graphical diagram tool",
+  "main": "index.js",
+  "workspaces": [
+    "src/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanob/fear-greed-twitter-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivanob/fear-greed-twitter-bot/issues"
+  },
+  "homepage": "https://github.com/ivanob/fear-greed-twitter-bot#readme"
+}
