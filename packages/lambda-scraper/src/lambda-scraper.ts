@@ -7,13 +7,22 @@ import { FAndG } from "@fear-greed-bot/common";
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-export const handler = async (event: APIGatewayEvent) => {
+const addMetadataToReading = (reading: FAndG): FAndG => {
+  return {
+    ...reading,
+    id: uuidv4(),
+    timestamp: Date.now()
+  }
+}
+ 
+export const handler_scraper = async (event: APIGatewayEvent) => {
   try {
     const reading: FAndG | undefined = await scrapeFearAndGreedIndex();
     if(reading){
-      await sendMessage(reading)
+      const readingComplete = addMetadataToReading(reading);
+      await sendMessage(readingComplete)
+      await storeReadingInDB(readingComplete);
     }
-    // await storeReadingInDB(reading);
   } catch {
     return {
       statusCode: 400,
@@ -30,9 +39,7 @@ const storeReadingInDB = async (reading: FAndG) => {
   const params = {
     TableName: "fear-greed-readings",
     Item: {
-      id: uuidv4(),
-      timestamp: Date.now(),
-      index: reading.index,
+      ...reading
     },
   };
   return dynamodb.put(params).promise();
