@@ -1,6 +1,6 @@
 resource "aws_iam_role" "iam_for_lambda" {
-  name               = "lambda_role"
-  assume_role_policy = data.aws_iam_policy_document.policy.json
+  name               = "lambda_role_scraper"
+  assume_role_policy = data.aws_iam_policy_document.policy_execute_lambda_scrape.json
 
   # This inline_policy is for attaching to the lambda the permissions to interact with DB
   inline_policy {
@@ -52,7 +52,7 @@ data "archive_file" "zip" {
   output_path = "../packages/lambda-scraper/dist/lambda-scraper.zip"
 }
 
-data "aws_iam_policy_document" "policy" {
+data "aws_iam_policy_document" "policy_execute_lambda_scrape" {
   statement {
     sid    = ""
     effect = "Allow"
