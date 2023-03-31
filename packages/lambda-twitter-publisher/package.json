@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rm -rf dist",
+    "build": "esbuild ./src/lambda-publisher.ts --bundle --platform=node --target=es2020 --outfile=dist/lambda-publisher.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
