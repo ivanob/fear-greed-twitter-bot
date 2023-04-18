@@ -29,6 +29,12 @@ resource "aws_lambda_function" "lambda_twitter_publisher" {
   memory_size      = 128
   timeout          = 5
   source_code_hash = data.archive_file.zip_twitter_publisher.output_base64sha256
+  environment {
+    variables = {
+      KEY1 = "VALUE1"
+      KEY2 = "VALUE2"
+    }
+  }
 }
 
 # This data block packs the lambda source code into a zip

@@ -4,7 +4,7 @@ import { SQS } from "aws-sdk";
 const sqs = new SQS();
 
 const queueUrl =
-  "https://sqs.eu-west-1.amazonaws.com/065454142634/sqs-publish-fandg-reading";
+  `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.AWS_ACCOUNT_ID}/sqs-publish-fandg-reading`;
 
 export const sendMessage = async (messageBody: FAndG) => {
   try {

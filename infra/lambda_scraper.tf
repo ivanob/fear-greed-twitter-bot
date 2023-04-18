@@ -43,6 +43,11 @@ resource "aws_lambda_function" "lambda_scraper" {
   memory_size      = 128
   timeout          = 5
   source_code_hash = data.archive_file.zip.output_base64sha256
+  environment {
+    variables = {
+      AWS_ACCOUNT_ID = var.aws_account_id
+    }
+  }
 }
 
 # This data block packs the lambda source code into a zip
