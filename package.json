@@ -1,7 +1,7 @@
 {
   "name": "fear-greed-twitter-bot",
   "version": "1.0.0",
-  "description": "- [X] Terraform: create a couple of lambdas and a SQS queue in between them, also a DynamoDB table to store some data. - [X] Twitter API: basic usage of the API - [X] Typescript must be set in the most strict level in `.tsconfig` - [X] Compile TS project and bundle it to deploy as JS lambda [1] - [X] Find a good graphical diagram tool",
+  "description": "Scrapes and publishes on twitter the fear & greed index",
   "main": "index.js",
   "workspaces": [
     "packages/*"

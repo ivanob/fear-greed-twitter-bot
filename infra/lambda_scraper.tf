@@ -37,7 +37,7 @@ resource "aws_lambda_permission" "sqs_permission" {
 resource "aws_lambda_function" "lambda_scraper" {
   filename         = data.archive_file.zip.output_path
   function_name    = "handler_scraper"
-  handler          = "lambda-scraper.handler"
+  handler          = "lambda-scraper.handler_scraper"
   runtime          = "nodejs16.x"
   role             = aws_iam_role.iam_for_lambda.arn
   memory_size      = 128
@@ -91,7 +91,7 @@ data "aws_iam_policy_document" "inline_policy" {
 resource "aws_cloudwatch_event_rule" "cloudwatch_wakeup_scraper_lambda" {
   name        = "wakeup_scraper_rule"
   description = "It wakes up the lambda to scrape the fear&greed data"
-  schedule_expression = "rate(1 minute)"
+  schedule_expression = "rate(1 day)"
 }
 
 resource "aws_cloudwatch_event_target" "cloudwatch_target_scraper_lambda" {

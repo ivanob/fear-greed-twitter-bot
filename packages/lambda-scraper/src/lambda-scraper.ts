@@ -20,8 +20,9 @@ export const handler_scraper = async (event: APIGatewayEvent) => {
     const reading: FAndG | undefined = await scrapeFearAndGreedIndex();
     if(reading){
       const readingComplete = addMetadataToReading(reading);
-      await sendMessage(readingComplete)
-      await storeReadingInDB(readingComplete);
+      const promise1 = sendMessage(readingComplete)
+      const promise2 = storeReadingInDB(readingComplete);
+      await Promise.all([promise1, promise2])
     }
   } catch {
     return {

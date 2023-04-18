@@ -9,8 +9,8 @@
 ### Description
 The idea is to tweet periodically some information about the Fear&Greed index [1]. To do this a lambda will check every X hours the external resource, scrap the status about this index and send it to a SQS queue and also store it into a DynamoDB table.
 A second lambda will be in charge of dealing with the twitter API. As soon as any message arrives to the SQS queue it will pusblish it in a new tweet.
+![](resources/diagram-fear-greed.jpg)
 
-![](images/Fear&GreedIndex.png)
 <b>[1]</b> https://edition.cnn.com/markets/fear-and-greed
 
 
@@ -20,10 +20,29 @@ want to use SLS or AWS SAM for this cause I want to do it all from terraform. Al
 way of bundling would be the following, but code is less readable and for debugging purposes I wanted to keep it easy.
 ```"build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",```
 
+### About Fear and Greed index
+
+![](resources/Fear&GreedIndex.png)
+
+`What is the CNN Business Fear & Greed Index?`
+
+The Fear & Greed Index is a way to gauge stock market movements and whether stocks are fairly priced. The theory is based on the logic that excessive fear tends to drive down share prices, and too much greed tends to have the opposite effect.
+
+`How is Fear & Greed Calculated?`
+
+The Fear & Greed Index is a compilation of seven different indicators that measure some aspect of stock market behavior. They are market momentum, stock price strength, stock price breadth, put and call options, junk bond demand, market volatility, and safe haven demand. The index tracks how much these individual indicators deviate from their averages compared to how much they normally diverge. The index gives each indicator equal weighting in calculating a score from 0 to 100, with 100 representing maximum greediness and 0 signaling maximum fear.
+
+`How often is the Fear & Greed Index calculated?`
+
+Every component and the Index are calculated as soon as new data becomes available.
+
+`How to use Fear & Greed Index?`
+
+The Fear & Greed Index is used to gauge the mood of the market. Many investors are emotional and reactionary, and fear and greed sentiment indicators can alert investors to their own emotions and biases that can influence their decisions. When combined with fundamentals and other analytical tools, the Index can be a helpful way to assess market sentiment.
 ### Lerna management orders
 
 >> npx nx graph // To visualize the project structure
->> npx lerna run build // To build the whole project from root
+>> npx lerna run build // To build the whole project (from root)
 >> npx lerna run test // To test the project (each package)
 #### Bibliography: 
 

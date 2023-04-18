@@ -1,11 +1,10 @@
 resource "aws_iam_role" "iam_for_lambda_twitter_publisher" {
   name               = "lambda_role_twitter_publisher"
   assume_role_policy = data.aws_iam_policy_document.policy_for_execute_lambda_twitter.json
-
-  inline_policy {
-    name   = "policy-sqs-reader"
-    policy = data.aws_iam_policy_document.inline_policy3.json
-  }
+  managed_policy_arns = [
+    aws_iam_policy.lambda_policy_for_cloudwatch.arn, # Permissions to write logs
+    aws_iam_policy.aws_lambda_policy_interact_sqs.arn # Permissions to receive data from SQS
+  ]
 }
 
 data "aws_iam_policy_document" "policy_for_execute_lambda_twitter" {
@@ -17,19 +16,6 @@ data "aws_iam_policy_document" "policy_for_execute_lambda_twitter" {
       type        = "Service"
     }
     actions = ["sts:AssumeRole"]
-  }
-}
-data "aws_iam_policy_document" "inline_policy3" {
-  statement {
-    actions = [
-      "sqs:ReceiveMessage",
-      "sqs:DeleteMessage",
-      "sqs:GetQueueAttributes"
-    ]
-
-    resources = [aws_sqs_queue.publish_fandg_reading.arn]
-
-    effect = "Allow"
   }
 }
 
