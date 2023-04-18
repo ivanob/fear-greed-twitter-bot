@@ -6,7 +6,8 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "esbuild ./src/lambda-publisher.ts --bundle --platform=node --target=es2020 --outfile=dist/lambda-publisher.js",
-    "test": "jest"
+    "test": "jest",
+    "start": "ts-node src/lambda-publisher.ts"
   },
   "keywords": [],
   "author": "",

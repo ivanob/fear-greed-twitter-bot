@@ -6,6 +6,17 @@
 - [X] Find a good graphical diagram tool
 - [X] monorepo management tool: lerna
 
+### Before deploying
+You need to create a file called `terraform.tfvars` in the `/infra` folder with the credentials to access your twitter app:
+```
+twitter_appKey="asDhdjs..."
+twitter_appSecret="S9dncq9d..."
+twitter_accessToken="231231..."
+twitter_accessSecret="nifjCVU..."
+```
+
+Then you can build the 2 lambdas using `npm run build` in each folder and it would be ready to deploy. To deploy go to the `/infra` folder and execute `terraform init`, `terraform plan` and `terraform apply`
+
 ### Description
 The idea is to tweet periodically some information about the Fear&Greed index [1]. To do this a lambda will check every X hours the external resource, scrap the status about this index and send it to a SQS queue and also store it into a DynamoDB table.
 A second lambda will be in charge of dealing with the twitter API. As soon as any message arrives to the SQS queue it will pusblish it in a new tweet.

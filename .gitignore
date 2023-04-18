@@ -3,3 +3,4 @@ infra/.terraform/
 node_modules/
 dist/
 .DS_STORE
+*.tfvars

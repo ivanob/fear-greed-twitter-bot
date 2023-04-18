@@ -45,7 +45,9 @@ resource "aws_lambda_function" "lambda_scraper" {
   source_code_hash = data.archive_file.zip.output_base64sha256
   environment {
     variables = {
-      AWS_ACCOUNT_ID = var.aws_account_id
+      AWS_ACCOUNT_ID = var.aws_account_id #This variable is needed in the code of the lambda function to 
+      # point at the SQS resource, so I get it from the variables and pass it so can be used by: process.env.AWS_ACCOUNT_ID,
+      # the AWS_REGION is automatically filled so its available for me without defining it explicitly
     }
   }
 }

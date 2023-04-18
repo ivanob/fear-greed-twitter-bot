@@ -31,8 +31,10 @@ resource "aws_lambda_function" "lambda_twitter_publisher" {
   source_code_hash = data.archive_file.zip_twitter_publisher.output_base64sha256
   environment {
     variables = {
-      KEY1 = "VALUE1"
-      KEY2 = "VALUE2"
+      TWITTER_APP_KEY = var.twitter_appKey
+      TWITTER_APP_SECRET = var.twitter_appSecret
+      TWITTER_ACCESS_TOKEN = var.twitter_accessToken
+      TWITTER_ACCESS_SECRET = var.twitter_accessSecret
     }
   }
 }
